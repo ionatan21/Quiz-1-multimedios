@@ -29,11 +29,9 @@
   color: white;
 }
 
-
 section {
   margin-bottom: 20px;
 }
-
 
 .Likes {
   background-color: #f0f0f0;
@@ -42,14 +40,12 @@ section {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .InputName {
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 .PadreModal {
   background-color: #f0f0f0;
@@ -58,18 +54,15 @@ section {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .App-link {
   color: #61dafb;
 }
 
-.ContainerPadre{
+.ContainerPadre {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-
 
 .input-container {
   display: flex;
@@ -103,7 +96,6 @@ section {
 .dislike-button:hover {
   background-color: #e0e0e0;
 }
-
 
 .modal {
   position: fixed;
@@ -141,7 +133,6 @@ section {
   background-color: #e0e0e0;
 }
 
-/* Contador.css */
 .contador-container {
   display: flex;
   flex-direction: column;
