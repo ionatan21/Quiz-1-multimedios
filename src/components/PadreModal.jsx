@@ -1,22 +1,36 @@
-// ModalPadre.js
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import ModalHijo from './Modal';
 
+const initialState = {
+  modalVisible: false
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'ABRIR_MODAL':
+      return { ...state, modalVisible: true };
+    case 'CERRAR_MODAL':
+      return { ...state, modalVisible: false };
+    default:
+      return state;
+  }
+};
+
 const PadreModal = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const abrirModal = () => {
-    setModalVisible(true);
+    dispatch({ type: 'ABRIR_MODAL' });
   };
 
   const cerrarModal = () => {
-    setModalVisible(false);
+    dispatch({ type: 'CERRAR_MODAL' });
   };
 
   return (
     <div className='ContainerPadre'>
       <button onClick={abrirModal}>Abrir Modal</button>
-      {modalVisible && <ModalHijo onClose={cerrarModal} />}
+      {state.modalVisible && <ModalHijo onClose={cerrarModal} />}
     </div>
   );
 };

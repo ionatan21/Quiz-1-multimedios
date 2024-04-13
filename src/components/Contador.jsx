@@ -1,35 +1,55 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
+
+const initialState = {
+  valor1: 0,
+  valor2: 0,
+  resultado: 0
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_VALOR1":
+      return { ...state, valor1: parseInt(action.payload) };
+    case "SET_VALOR2":
+      return { ...state, valor2: parseInt(action.payload) };
+    case "SUMAR":
+      return { ...state, resultado: state.valor1 + state.valor2 };
+    case "RESTAR":
+      return { ...state, resultado: state.valor1 - state.valor2 };
+    case "REINICIAR":
+      return initialState;
+    default:
+      return state;
+  }
+};
 
 const Contador = () => {
-  const [valor1, setValor1] = useState(0);
-  const [valor2, setValor2] = useState(0);
-  const [resultado, setResultado] = useState(0);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const sumar = () => {
-    setResultado(parseInt(valor1) + parseInt(valor2));
+    dispatch({ type: "SUMAR" });
   };
 
   const restar = () => {
-    setResultado(parseInt(valor1) - parseInt(valor2));
+    dispatch({ type: "RESTAR" });
   };
 
   const reiniciar = () => {
-    setValor1(0);
-    setValor2(0);
-    setResultado(0);
+    dispatch({ type: "REINICIAR" });
   };
+
   return (
     <div className="contador-container">
       <div className="input-container">
         <input
           type="number"
-          value={valor1}
-          onChange={(e) => setValor1(e.target.value)}
+          value={state.valor1}
+          onChange={(e) => dispatch({ type: "SET_VALOR1", payload: e.target.value })}
         />
         <input
           type="number"
-          value={valor2}
-          onChange={(e) => setValor2(e.target.value)}
+          value={state.valor2}
+          onChange={(e) => dispatch({ type: "SET_VALOR2", payload: e.target.value })}
         />
       </div>
       <div className="button-container">
@@ -40,7 +60,7 @@ const Contador = () => {
       <input
         className="resultado-input"
         type="number"
-        value={resultado}
+        value={state.resultado}
         readOnly
       />
     </div>
